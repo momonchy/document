@@ -29,12 +29,16 @@
     - OU間、アカウント間でAWSAPIリソースへのアクセス制御（ホワイトリスト、ブラックリスト）
     - 明示的なAllowよりも明示的なDENYが優先される
     - SCPとIAMポリシー両方で許可されたAWSAPIが最終的に利用可能
+- 一括請求（Consolidated Billing）でアカウント毎の請求をまとめられる
+- CloudTrail、AWS Configなどのセキュリティログを集中管理（Organizationsの機能なの？）
 
-## AWS推奨構成
+## 考察
 
-- 支払アカウント
-- 基盤管理アカウント
-- 各種LOBアカウント
+- 一括請求用のAWSアカウントをOrganizationsのrootアカウントとする
+- Switch Role用のAWSアカウントを決める（IAMユーザの集中管理）
+    - スイッチ先に適切なロールを作成（EC2のみ利用可など）
+    - スイッチ元にスイッチ先AWSアカウント数分のAssume Role許可ポリシーを作成
+        - 適宜IAMユーザへアサイン
 
 ## 参考
 - [AWSにおけるマルチアカウント管理の
