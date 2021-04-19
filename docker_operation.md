@@ -80,17 +80,22 @@ artifacts:
 
 コンテナ登録＆起動（コンテナ名を付与）
 ```sh
-$ docker run --name ${container name} ${image id/name}
+$ docker run -it --name ${container name} ${image id/name} /bin/bash
 ```
 
 コンテナ登録＆起動＆バックグランド実行（コンテナ名を付与）
 ```sh
-$ docker run -d --name ${container name} ${image id/name}
+$ docker run -it -d --name ${container name} ${image id/name} /bin/bash
 ```
 
 コンテナ登録＆起動＆バックグランド実行＆ポートフォワード（コンテナ名を付与）
 ```sh
-$ docker run -d --name ${container name} -p ${host port}:${container port} ${image id/name}
+$ docker run -it -d --name ${container name} -p ${host port}:${container port} ${image id/name} /bin/bash
+```
+
+コンテナ登録＆起動＆バックグランド実行＆ポートフォワード＆ローカルディレクトリアタッチ（コンテナ名を付与）
+```sh
+$ docker run -it -d --name ${container name} -p ${host port}:${container port} -v ${host/path/to/dir}:${container/path/to/dir} ${image id/name} /bin/bash
 ```
 
 <br>
@@ -120,4 +125,9 @@ $ docker rm ${container id/name}
 コンテナへログイン。
 ```sh
 $ docker exec -it ${container id/name} /bin/bash
+```
+
+コンテナのスナップショットイメージの作成 ([公式ドキュメント](https://docs.docker.jp/engine/userguide/dockerimages.html#id11))
+```sh
+$ docker commit ${container id/name} ${image name}:${tag}
 ```
