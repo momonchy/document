@@ -57,7 +57,7 @@ CloudFront の Origin (バックエンド) で特定のエラーが発生した�
 
 7. エラーコード毎の設定を追加
     例)
-    ![image](./images/cloudfront_sorry_2.png)
+    <img src="./images/cloudfront_sorry_2.png" width=300>
 
 8. Behaviors へ設定を追加
     - Path Pattern: ```/maintenance/*```
