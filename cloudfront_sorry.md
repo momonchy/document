@@ -56,8 +56,11 @@ CloudFront の Origin (バックエンド) で特定のエラーが発生した�
 6. Distribution > Error Pages へ移動
 
 7. エラーコード毎の設定を追加
-    例)
-    <img src="./images/cloudfront_sorry_2.png" width=300>
+    - HTTP Error Code: 任意
+    - Error Caching Minimum TTL: 任意
+    - Customize Error Response: ```Yes```
+    - Response Page Path: ```/maintenance/sorry.html```
+    - HTTP Response Code: 任意
 
 8. Behaviors へ設定を追加
     - Path Pattern: ```/maintenance/*```
