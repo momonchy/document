@@ -7,10 +7,14 @@
 - AWSアカウント間においてセキュリティ対策を分離
 - 課金管理などからサービスプロバイダー型のサービス提供がし易い
 
+<br>
+
 ## デメリットへの対策
 
 - IAMのクロスアカウントアクセス（Switch Role）
 - 一括請求（Consolidated Billing）
+
+<br>
 
 ## AWS Organizations とは
 
@@ -32,6 +36,8 @@
 - 一括請求（Consolidated Billing）でアカウント毎の請求をまとめられる
 - CloudTrail、AWS Configなどのセキュリティログを集中管理（Organizationsの機能なの？）
 
+<br>
+
 ## 考察
 
 - 一括請求用のAWSアカウントをOrganizationsのrootアカウントとする
@@ -40,6 +46,7 @@
     - スイッチ元にスイッチ先AWSアカウント数分のAssume Role許可ポリシーを作成
         - 適宜IAMユーザへアサイン
 
+<br>
+
 ## 参考
-- [AWSにおけるマルチアカウント管理の
-手法とベストプラクティス](https://d0.awsstatic.com/events/jp/2017/summit/slide/D4T2-2.pdf)
+- [AWSにおけるマルチアカウント管理の手法とベストプラクティス](https://d0.awsstatic.com/events/jp/2017/summit/slide/D4T2-2.pdf)
