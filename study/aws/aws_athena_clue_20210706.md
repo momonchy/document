@@ -4,6 +4,11 @@
 
 <br>
 
+## 資料
+- https://contents-s3-bucket.s3.ap-northeast-1.amazonaws.com/documents/aws/20210707_AmazonAthena-AWSGlue.pdf
+
+<br>
+
 ## キーワード
 - カーディナル
 - OLAP/OLTP
