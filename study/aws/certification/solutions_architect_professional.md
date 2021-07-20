@@ -19,10 +19,11 @@ P.186 特定IAMユーザへBilling and Cost Management画面の閲覧を許可�
 - その他にも沢山ある：[参考URL](https://docs.aws.amazon.com/ja_jp/awsaccountbilling/latest/aboutv2/billing-permissions-ref.html)
 
 P.226 タグベースのIAM制限ポリシー
-- ```PrincipalTag: ``` IAMユーザに付与したタグベースで制限
-- ```ResourceTag: ``` 特定タグが付与されたリソースのみ操作可能な制限
-- ```RequestTag: ``` 特定リソースへの特定タグの付与を強制
-- ```TagKeys: ``` よくわからん
+- タグベースでIAMポリシーを発動できる
+- ```PrincipalTag```: IAMユーザに付与したタグベースで制限
+- ```ResourceTag```: 特定タグが付与されたリソースのみ操作可能な制限
+- ```RequestTag```: 特定リソースへの特定タグの付与を強制
+- ```TagKeys```: よくわからん
 - [参考URL](https://aws.amazon.com/jp/premiumsupport/knowledge-center/iam-tag-based-restriction-policies/)
 
 <br>
@@ -40,8 +41,8 @@ P.92 リソースポリシーで他アカウントからのアクセスを制御
 ## VPC
 
 P.95 インターリージョンVPCピアリング
-- 異なるリージョン間でのVPCピアリングが可能（バージニア<->オレゴン<->東京）
-- VPCピアリングは単一リージョン間のみサポート（東京<->東京）
+- 異なるリージョン間でのVPCピアリングが可能（バージニア↔オレゴン↔東京）
+- VPCピアリングは単一リージョン間のみサポート（東京↔東京）
 - [参考URL: ちょっと古い（現在、東京リージョンはサポート済み）](https://dev.classmethod.jp/articles/inter-regrion-vpc-peering/)
 
 P.206 VGWルートプロパゲーション
@@ -84,4 +85,35 @@ P. 232 レイテンシーベースルーティング
 - ユーザとレコードに紐づいているリージョンとのレイテンシーを過去の統計情報から計算
 - 最もレイテンシーが低いリージョンのエンドポイントに名前解決する
 
+<br>
+
+## Disaster Recovery
+
+P.123 4つのDR戦略
+| 構成 | コスト | RTO (目標復旧時間) | RPO (目標復旧時点) | 詳細 |
+| -- | :--: | :--: | -- | -- |
+| バックアップ＆リストア | 低 | 長 | 最終バックアップタイミング | バックアップをS3へ保存しDRサイトへレプリケーション<br>DR時はS3のバックアップから復旧 |
+| パイロットライト | ↑ | ↑ | 最終データ同期タイミング | 低スペックのDBをDRサイトでスタンバイ起動し常時レプリケーション<br>DR時はAPを起動しDBをスケールアップ |
+| ウォームスタンバイ | ↓ | ↓ | 最終データ同期タイミング | 低スペックのAP/DBをDRサイトで常時起動<br>DR時はAP/DBをスケールアップしDNS参照先を変更 |
+| ホットスタンバイ<br>マルチサイト | 高 | 短 | 最終データタイミング | 同スペックのAP/DBをDRサイトで常時起動<br>DR時はDNS参照先を変更 |
+
+<br>
+
+## Storage Gateway
+
+P.125 Storage Gatewayとは？
+- オンプレ側に「VM/Hyper-V/KVM」or「[HWアプライアンス](https://aws.amazon.com/jp/storagegateway/hardware-appliance/)」を用意して裏側でAWSストレージサービスを利用
+
+    ![image](https://d2908q01vomqb2.cloudfront.net/e1822db470e60d090affd0956d743cb0e7cdf113/2020/05/04/Figure-2-High-level-architecture-of-storage-gateway.png)
+
+- 大きく3つ、詳細には4つの種別がある
+
+    | 種別 | 接続 | 内容 |
+    | -- | :--: | -- |
+    | ファイルゲートウェイ | NFS/SMB | S3へデータを保存 |
+    | ボリュームゲートウェイ<br>GatewayStored Volumes | iSCSI | オンプレ側へデータを保存し非同期でS3へデータをバックアップ<br>S3→Backup→EBS→EC2マウント何てことも可能 |
+    | ボリュームゲートウェイ<br>GatewayCached Volumes | iSCSI | オンプレ側にはキャッシュのみ保存<br>データ全体はS3へ保存 |
+    | テープゲートウェイ | VTL | S3へデータを保存（Glacier/Clacie rDeep Archiveと連動） |
+
+<br>
 
