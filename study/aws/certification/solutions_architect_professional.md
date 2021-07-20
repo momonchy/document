@@ -153,8 +153,8 @@ P.153 オンプレ環境からAurora MySQLへのレプリケーションにつ�
 - Aurora MySQLバージョン 5.6以降から可能
 - SSL通信が行えるよう各種証明書の準備が必要
 - バイナリログの転送設定などは通常のMySQLと同じ
-- 若干NW構成と同期方向は異なるがこんなイメージか
-    ![image3](https://blogs.techvan.co.jp/oci/wp-content/uploads/2021/03/blog_MDS_replication_0000.png)
+- 同期方向は異なるがこんなイメージか
+    ![image3](https://cdn-ak.f.st-hatena.com/images/fotolife/t/tommy_39/20190805/20190805131146.jpg)
 
 <br>
 
