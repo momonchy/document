@@ -1,6 +1,6 @@
 # ECS ExecでECSコンテナへ接続する
 
-ここで紹介するのは、ECS上で稼働するコンテナへSSM経由でコンソール接続する為の手順です。
+ここで紹介するのは、ECS上で稼働するコンテナへSSM経由でコンソール接続する為の手順です。  
 必要な手順はざっくり以下の流れとなります。
 
 - AWSCLIを準備する
@@ -44,7 +44,7 @@
           [--cli-input-json | --cli-input-yaml]
           [--generate-cli-skeleton <value>]
     ```
-    ※オプションが利用できない場合は、以下の公式ドキュメントを参照しAWSCLIをアップデート
+    オプションが利用できない場合は、以下の公式ドキュメントを参照しAWSCLIをアップデート
     - [AWS CLI バージョン 1 のインストール、更新、アンインストール](https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/install-cliv1.html)
     - [AWS CLI バージョン 2 のインストール、更新、アンインストール](https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/install-cliv2.html)
     <br>
@@ -53,7 +53,7 @@
     ```sh
     $ session-manager-plugin --version
     ```
-    ※Session　Managerプラグインがインストールされていない場合は、以下の公式ドキュメントを参照しインストール
+    Session　Managerプラグインがインストールされていない場合は、以下の公式ドキュメントを参照しインストール
     - [AWS CLI 用の Session Manager プラグインをインストールする](https://docs.aws.amazon.com/ja_jp/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html)
     <br>
 
@@ -90,7 +90,8 @@
     ```
 
 3. 既存タスクを停止するなどして、ECS Service内のタスクを作り直す
-    <br>
+
+<br>
 
 ### コンテナへ接続
 
