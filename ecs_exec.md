@@ -49,11 +49,11 @@
     - [AWS CLI バージョン 2 のインストール、更新、アンインストール](https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/install-cliv2.html)
     <br>
 
-2. Session　Managerプラグインがインストールされていることを確認
+2. Session Managerプラグインがインストールされていることを確認
     ```sh
     $ session-manager-plugin --version
     ```
-    Session　Managerプラグインがインストールされていない場合は、以下の公式ドキュメントを参照しインストール
+    Session Managerプラグインがインストールされていない場合は、以下の公式ドキュメントを参照しインストール
     - [AWS CLI 用の Session Manager プラグインをインストールする](https://docs.aws.amazon.com/ja_jp/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html)
     <br>
 
