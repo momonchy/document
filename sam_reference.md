@@ -15,7 +15,7 @@ AWS SAMを以下の3点に分解して理解する。
 
 ## 1. 前提
 
-本ドキュメントでは、Lambda関数のRuntimeとして ```Python3.8``` を選択することを前提とする。
+本ドキュメントでは、Lambda関数のRuntimeとして ```Python3.8``` を選択することを前提とする。  
 ※[2021/08にLambdaでPython3.9がサポートされました](https://aws.amazon.com/jp/about-aws/whats-new/2021/08/aws-lambda-adds-support-python-3-9/)
 
 <br>
