@@ -11,10 +11,10 @@ Step Functions が AWS SDK のサービス統合により、直接連携可能�
 
 S3 Bucket へアップロードされた動画ファイルを Amazon Transcribe で文字起し、これを Amazon Translate で翻訳してみる。
 
-- Application video
+- Application video  
     [TED Talk: セバスチャン・スラン「Googleの自動運転車で目指していること」](https://www.ted.com/talks/sebastian_thrun_google_s_driverless_car?language=ja)
 
-- State machine
+- State machine  
     <img src="./images/state-machine.png" width=400>
 
 <br>
