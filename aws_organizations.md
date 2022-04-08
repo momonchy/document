@@ -5,14 +5,23 @@
 - PCIDSSへの準拠（[セグメンテーション](https://dev.classmethod.jp/articles/pci-dss-compliance-on-aws/)）
 - Webコンソールの分離
 - AWSアカウント間においてセキュリティ対策を分離
-- 課金管理などからサービスプロバイダー型のサービス提供がし易い
+- コスト管理の観点から顧客に対しサービスプロバイダー型のサービスを提供しやすい
+
+<br>
+
+## AWSアカウントを分割するデメリット
+
+- アカウントを跨いだ複雑なセキュリティポリシーの管理
+- アカウントを跨いだインフラ管理が煩雑
+- アカウント間の請求管理
 
 <br>
 
 ## デメリットへの対策
 
-- IAMのクロスアカウントアクセス（Switch Role）
-- 一括請求（Consolidated Billing）
+- AWS Organizationsで一元的に管理
+- IAMのクロスアカウントアクセスの利用（Switch Role）
+- AWS Organizationsで一括請求
 
 <br>
 
@@ -38,7 +47,7 @@
 
 <br>
 
-## 考察
+## 設計ポイント
 
 - 一括請求用のAWSアカウントをOrganizationsのrootアカウントとする
 - Switch Role用のAWSアカウントを決める（IAMユーザの集中管理）
