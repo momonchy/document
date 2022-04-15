@@ -1,45 +1,44 @@
 # Switch Roleを利用した複数AWSアカウント管理
 
-## 導入のメリット
-
-プロダクト毎だったり環境毎にAWSアカウントを作成している場合、以下のようなデメリットがあります。
-
-- アカウント間を跨ぐ運用が非常に面倒（いちいちログアウト）
-- Credentials をアカウント毎に発行することが億劫（入/退職者が出るたびに億劫）
-- Credentials を Coder に渡すとコード内に埋め込みたがる（強制的にAssumeRoleを使わせたい）
-
-Switch Roleを導入すると上記ストレスから開放されます。
+Switch Role の簡単な紹介と導入手順について紹介します。
 
 <br>
 
-## Switch Roleとは
+## 導入のメリット
 
-Switch Roleとは、
+プロダクト毎だったり環境毎にAWSアカウントを作成している場合のデメリットです。
+
+- アカウント間を跨ぐ運用が非常に面倒（都度ログアウト）
+- Credentials をアカウント毎に発行することが億劫（入社/退職者への対応）
+- Credentials を開発者に渡すとコード内に埋め込みがち（うっかりPublicへ公開しセキュリティ事故）
+  - [GitHub公開後に13分で悪用](https://qiita.com/saitotak/items/813ac6c2057ac64d5fef)
+
+Switch Roleを導入すると上記ストレス/リスクから開放されます。
+
+<br>
+
+## Switch Role とは
+
+Switch Role とは、
 - Webコンソールへログインした状態を維持しながら複数のAWSアカウントへスイッチすることが可能
 - スイッチ後のIAM権限はスイッチ先の Role に予め設定した Policy が適応される
 - 各AWSアカウント上の Cloud Trail にはスイッチ元のアカウント情報が記録される
-
-以下のようなイメージ。
-
-[![](https://mermaid.ink/img/eyJjb2RlIjoiZmxvd2NoYXJ0IExSXG4gICAgVVtBZG1pbmlzdHJhdG9yXSAtLT58bG9naW58IEFbQWNjb3VudCBBXVxuICAgIEEgPC0uLT58c3dpdGNofCBCW0FjY291bnQgQl1cbiAgICBBIDwtLi0-fHN3aXRjaHwgQ1tBY2NvdW50IENdXG4gICAgQiA8LS4tPnxzd2l0Y2h8IEMiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZmxvd2NoYXJ0IExSXG4gICAgVVtBZG1pbmlzdHJhdG9yXSAtLT58bG9naW58IEFbQWNjb3VudCBBXVxuICAgIEEgPC0uLT58c3dpdGNofCBCW0FjY291bnQgQl1cbiAgICBBIDwtLi0-fHN3aXRjaHwgQ1tBY2NvdW50IENdXG4gICAgQiA8LS4tPnxzd2l0Y2h8IEMiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlfQ)
+    <br>
+    <img src="./images/switch_role.png" width=500>
 
 <br>
 
-## 注意
+## Switch Roleの設定手順
 
-本ドキュメントで紹介する設定手順は「AWS管理者が楽をする」ことだけにフォーカスしています。
-
-複数の開発者向けに「適切にIAM権限を付与する」という点では、Policy のアサインや Role ARN の展開方法などにまだ課題がありますので、その点は十分に留意して下さい。
+※注意
+以下の手順ではは「AWS管理者が楽をする」ことだけにフォーカスしています。複数の開発者向けに「適切にIAM権限を付与する」という点では、Policy のアサインや Role ARN の展開方法などにまだ課題がありますので、その点は十分に留意して下さい。
 
 <br>
 
-## 利用するAWSサービス
+### 前提
 
+利用するAWSサービス
 - IAM (Identity Access Management)
-
-<br>
-
-## その他便利ツール
 
 普段 Chrome ブラウザを利用している場合には以下の拡張機能を入れておくと便利です。
 
@@ -47,9 +46,7 @@ Switch Roleとは、
 
 <br>
 
-## Switch Roleの設定手順
-
-ロール作成
+### ロール作成
 
 1. **スイッチ元** のAWSアカウントIDをメモっておく（数字12桁）
 2. Role作成権限を持ったアカウントで **スイッチ先** のWebコンソールへログイン
@@ -59,9 +56,11 @@ Switch Roleとは、
 6. 「アカウントID」へ手順(1)でメモったスイッチ元のAWSアカウントIDを入力して次のステップへ
 7. アタッチポリシーは管理者なので「AdministratorAccess」を選択して次のステップへ
 8. 適当にタグ情報を入力して次のステップへ
-9. ロール名と説明を入力し、ロール作成完了
+9. ロール名と説明を入力しロール作成完了
 
-AWS Extend Swith Rolesの設定
+<br>
+
+### AWS Extend Swith Rolesの設定
 
 10. 手順(9)で作成したロールを検索し詳細内容へ
 11. 「ロールARN」の値をメモっておく
@@ -83,15 +82,13 @@ AWS Extend Swith Rolesの設定
 
 <br>
 
-> 別に AWS Extend Swith Roles を使わなくてもWebコンソールの機能で Switch Role は可能だが、5アカウント以上を登録すると最初に登録したものから消えていってします。
+> AWS Extend Swith Roles を利用しなくとも Webコンソールの標準機能で Switch Role は可能だが、5アカウント以上を登録すると最初に登録したものから消えていく。
 
 <br>
 
-## AWS CLI への設定
+### 番外編（AWS CLI への設定）
 
-Switch Role 環境下で各AWSアカウント上の AWS API を叩くためには、Asume Role を利用して一時的な Credencial を取得する必要があります。
-
-AWS CLI を利用している場合は、以下のような設定を入れておく必要があります。
+Switch Role 環境下にて各AWSアカウント上の AWS API を叩くためには、Asume Role を利用して一時的な Credencial（STS）を取得する必要があります。AWS CLI を利用している場合、以下のような設定を入れておく必要があります。
 
 ```Apache
 $ cd ~/.aws
@@ -113,13 +110,26 @@ output = json
 -------------------
 ```
 
-上記は、default へ設定されているスイッチ元の Credencial を参照して Assume Role により一時的な権限を取得することを意味しています。
+上記設定は、default へ設定されているスイッチ元の Credencial を参照して Assume Role により一時的な権限を取得することを意味しています。AWS API を叩く際は以下のように「--profile」でプロファイル名を指定します。
 
-実際に AWS API を叩く際は以下のようにします。
-
-```
+```Shell
 $ aws --profile myaccount-dev s3 ls
 ```
+
+プログラムからも参照可能です。以下は Python で Boto3 を利用しているケースです。
+
+```Python
+import boto3
+from boto3.session import Session
+
+session = Session(profile='myaccount-dev')
+client = session.client('firehose')
+
+response = client.put_record(
+    ...
+)
+```
+
 
 <br>
 
@@ -127,4 +137,3 @@ $ aws --profile myaccount-dev s3 ls
 
 - [DevelopersIO - IAMのスイッチロールを理解したい](https://dev.classmethod.jp/articles/iam-switchrole-for-beginner/)
 - [DevelopersIO - 初めてのAssumeRole](https://dev.classmethod.jp/articles/sugano-005-s3/)
-- [Mermaid Live Editor](https://mermaid-js.github.io/mermaid-live-editor/)
