@@ -34,7 +34,7 @@ Security Hubとは？
 - ダッシュボードみたいなもの
 
 参考ブログ
-    - [Enabling AWS Security Hub integration with AWS Chatbot](https://aws.amazon.com/jp/blogs/security/enabling-aws-security-hub-integration-with-aws-chatbot/)
+- [Enabling AWS Security Hub integration with AWS Chatbot](https://aws.amazon.com/jp/blogs/security/enabling-aws-security-hub-integration-with-aws-chatbot/)
 
 <br>
 
@@ -47,7 +47,6 @@ Control Towerとは
     - トラブルシューティングや新市電との全容解明
     - ガードレールの構築（SCP、Config Rules）
 - Organizations, Config, CloudTrail, などの既存サービスの推奨設定がパッケージされたもの？
-
 
 <br>
 
