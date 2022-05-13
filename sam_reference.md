@@ -450,5 +450,26 @@ s3_prefix = "{環境BのS3バケット配下へ作成するディレクトリ名
 
 ### 5.2. パラメータの分離について
 
-デプロイ環境毎に Lambda などが参照する環境変数が異なる場合には、事前にSAMテンプレート内で
+デプロイ環境毎に Lambda などが参照する環境変数が異なる場合には、事前にSAMテンプレート内で Parameter セクションを指定しておいて外部参照可能な状態にしておく。
 
+```sam deploy``` コマンドにて ```--parameter-overrides``` オプションで指定するパラメータを、事前に ```samconfig.toml``` へ記載しておくことでデプロイ先環境の切り替えを楽にしておく。
+
+```toml
+[{環境A}.deploy.parameters]
+--snip
+parameter_overrides = '''
+    PARAM1=XXXXXXXX
+    PARAM2=XXXXXXXX
+    PARAM3=XXXXXXXX
+'''
+```
+
+<br>
+
+### 5.3. デプロイ
+
+ デプロイの際には ```--profile``` で対象 Credential を指定し、```--config-env``` で samconfig.toml 上で指定したデプロイ環境を指定する。
+
+ ```Shell
+ $ sam deploy --profile {プロファイル名} --config-env {環境名}
+ ```
