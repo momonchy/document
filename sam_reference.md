@@ -85,7 +85,14 @@ Lambda関数が複数になる場合の注意点
 Lambda関数へ設定したい環境変数や、既存のAWSリソース名などは ```template.yaml``` へ直接記載するべきではない。  
 この場合、```sam local``` や ```sam deploy``` では外部から環境変数やパラメータとして渡すことになるが、それぞれで変数の渡し方が異なる。
 
-詳細についてはAWS SAM CLIへ記載する。
+詳細については [3. AWS SAMテンプレート](https://github.com/momonchy/document/edit/main/sam_reference.md#3-aws-sam%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88) へ記載する。
+
+<br>
+
+### 2.3. AWS環境の分離
+
+デプロイ先のAWSアカウント環境を分離する場合には、```samconfig.toml``` 上へ記載されたデプロイ環境情報を分けて記述する必要がある。
+詳細は [5. AWS環境の分離](https://github.com/momonchy/document/edit/main/sam_reference.md#5-aws%E7%92%B0%E5%A2%83%E3%81%AE%E5%88%86%E9%9B%A2) へ記載する。
 
 <br>
 
@@ -388,3 +395,60 @@ $ sam logs -t -n HelloWorldFunc
 ```
 
 ```-t``` オプションを付けることでログを ```tail``` できる。
+
+<br>
+
+## 5. AWS環境の分離
+
+デプロイ先のAWSアカウント環境を分離する際の対応方法について紹介する。
+
+<br>
+
+### 5.1. samconfig.toml について
+
+```sam deploy``` 時に参照、および生成されるファイル。```--guided``` オプションを指定していると対話形式で各種パラメータを指定可能。
+概ね以下のような内容で生成される。
+
+```toml
+version = 0.1
+
+[{環境名}]
+[{環境名}.deploy]
+[{環境名}.deploy.parameters]
+stack_name = "{スタック名}"
+s3_bucket = "{S3バケット名}"
+s3_prefix = "{S3バケット配下へ作成するディレクトリ名で通常スタック名と同じにする}"
+region = "ap-northeast-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+image_repositories = []
+```
+
+デプロイ先のAWSアカウント環境を分離する場合には以下のように分離する。
+
+```toml
+version = 0.1
+
+[{環境A}]
+[{環境A}.deploy]
+[{環境A}.deploy.parameters]
+stack_name = "{環境Aのスタック名}"
+s3_bucket = "{環境AのS3バケット名}"
+s3_prefix = "{環境AのS3バケット配下へ作成するディレクトリ名で通常スタック名と同じにする}"
+--snip
+
+[{環境B}]
+[{環境B}.deploy]
+[{環境B}.deploy.parameters]
+stack_name = "{環境Bのスタック名}"
+s3_bucket = "{環境BのS3バケット名}"
+s3_prefix = "{環境BのS3バケット配下へ作成するディレクトリ名で通常スタック名と同じにする}"
+--snip
+```
+
+<br>
+
+### 5.2. パラメータの分離について
+
+デプロイ環境毎に Lambda などが参照する環境変数が異なる場合には、事前にSAMテンプレート内で
+
