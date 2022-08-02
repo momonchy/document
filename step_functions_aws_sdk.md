@@ -25,6 +25,91 @@ Getting ready...
 
 <br>
 
+## State Machine Code
+
+```json
+{
+  "Comment": "A description of my state machine",
+  "StartAt": "StartTranscriptionJob",
+  "States": {
+    "StartTranscriptionJob": {
+      "Type": "Task",
+      "Parameters": {
+        "LanguageCode.$": "$.fromLanguege",
+        "MediaFormat.$": "$.mediaFormat",
+        "Media": {
+          "MediaFileUri.$": "$.mediaFile"
+        },
+        "OutputBucketName.$": "$.s3Bucket",
+        "OutputKey": "asr/transcribe.json",
+        "TranscriptionJobName.$": "$$.Execution.Name"
+      },
+      "Resource": "arn:aws:states:::aws-sdk:transcribe:startTranscriptionJob",
+      "Next": "Wait",
+      "ResultPath": "$.transcription"
+    },
+    "Wait": {
+      "Type": "Wait",
+      "Seconds": 10,
+      "Next": "GetTranscriptionJob"
+    },
+    "GetTranscriptionJob": {
+      "Type": "Task",
+      "Parameters": {
+        "TranscriptionJobName.$": "$.transcription.TranscriptionJob.TranscriptionJobName"
+      },
+      "Resource": "arn:aws:states:::aws-sdk:transcribe:getTranscriptionJob",
+      "Next": "Choice",
+      "ResultPath": "$.transcription"
+    },
+    "Choice": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.transcription.TranscriptionJob.TranscriptionJobStatus",
+          "StringEquals": "IN_PROGRESS",
+          "Next": "Wait"
+        }
+      ],
+      "Default": "GetObject"
+    },
+    "GetObject": {
+      "Type": "Task",
+      "Parameters": {
+        "Bucket.$": "$.s3Bucket",
+        "Key": "asr/transcribe.json"
+      },
+      "Resource": "arn:aws:states:::aws-sdk:s3:getObject",
+      "ResultSelector": {
+        "filecontent.$": "States.StringToJson($.Body)"
+      },
+      "ResultPath": "$.transcription",
+      "Next": "ETL"
+    },
+    "ETL": {
+      "Type": "Pass",
+      "Parameters": {
+        "transcript.$": "$.transcription.filecontent.results.transcripts[0].transcript"
+      },
+      "Next": "TranslateText"
+    },
+    "TranslateText": {
+      "Type": "Task",
+      "End": true,
+      "Parameters": {
+        "SourceLanguageCode": "en",
+        "TargetLanguageCode": "ja",
+        "Text.$": "$.transcript"
+      },
+      "Resource": "arn:aws:states:::aws-sdk:translate:translateText",
+      "ResultPath": "$.translate"
+    }
+  }
+}
+```
+
+<br>
+
 ## Input Data
 
 ```json
