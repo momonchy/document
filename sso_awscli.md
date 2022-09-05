@@ -1,11 +1,11 @@
 # AWS SSO 環境下における AWS CLI の運用
 
-AWS Control Tower にて管理された AWS アカウントにおいては AWS SSO が有効になっており、AWSCLI を利用する場合、通常とは異なり Credential での認証は行わない（出来はするが推奨されない）
+AWS Control Tower にて管理された AWS アカウントにおいては AWS SSO が有効になっており、AWS CLI を利用する場合、通常とは異なり Credential での認証は行わない（出来はするが推奨されない）
 本ドキュメントでは、ローカル開発環境において AWS SSO に最適化された Profile 運用する為の設定手順を紹介する。
 
 <br>
 
-## 1. AWSCLI の導入（未導入の場合）
+## 1. AWS CLI の導入（未導入の場合）
 
 こちら [公式の手順](https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/getting-started-install.html) に沿って作業を行う。
 
@@ -40,7 +40,7 @@ output = json
 
 ## 3. 利用方法
 
-AWSCLI、AWS SAM、AWS CDK 等を利用する場合に事前に AssumeRole を行って STS を取得しておく必要がある。その際、Web ブラウザにて ID/Password 認証が発生する。
+AWS CLI、AWS SAM、AWS CDK 等を利用する場合に事前に AssumeRole を行って STS を取得しておく必要がある。その際、Web ブラウザにて ID/Password 認証が発生する。
 
 ```
 例）
