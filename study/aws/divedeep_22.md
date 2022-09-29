@@ -57,7 +57,7 @@ Twitter ハッシュタグ: #ちょっぴりDD
 
 <br>
 
-## AWS Lambda にも来ました。属性ベースのアクセス制御 (ABAC) サポート 
+## AWS Lambda にも来ました。属性ベースのアクセス制御 (ABAC) サポート
 
 - RBAC
   - Role-based access control
