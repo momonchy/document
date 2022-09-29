@@ -70,6 +70,7 @@ Twitter ハッシュタグ: #ちょっぴりDD
   - ここでいう属性とは？
     - タグを利用する
   - プリンシパルタグ（リクエスト元）とリソースタグ（Lambda等に付けたタグ）のValueが一致した場合のみアクセス許可するなど
+  - AWS SSO環境下でABACを利用する際の、Principalタグの[付け方](https://aws.amazon.com/jp/blogs/news/new-attributes-based-access-control-with-aws-single-sign-on/)
 
 <br>
 
