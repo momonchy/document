@@ -29,7 +29,7 @@ Twitter ハッシュタグ: #ちょっぴりDD
 
 ## Amazon QuickSight でかっこいい BI ダッシュボードを作る方法
 
-<div><video controls src="https://contents-s3-bucket.s3.ap-northeast-1.amazonaws.com/documents/aws/20220728_20th_ISV_DiveDeepSeminar_QuickSight.mp4" muted="false"></video><div>
+[MP4動画](https://contents-s3-bucket.s3.ap-northeast-1.amazonaws.com/documents/aws/20220728_20th_ISV_DiveDeepSeminar_QuickSight.mp4)
 
 <br>
 
