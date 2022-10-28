@@ -9,7 +9,27 @@ Twitter ハッシュタグ: #ちょっぴりDD
 
 <br>
 
-## 今月のお勧め5分間アップデート
+## オープニング&SAの今月のお勧め 5 分間アップデート
+
+[![alt設定](http://img.youtube.com/vi/qpXqX15boyE/0.jpg)](https://www.youtube.com/watch?v=qpXqX15boyE)
+
+<br>
+
+## Amazon Athena であっちこっちのデータを一括分析しよう
+
+[![alt設定](http://img.youtube.com/vi/_mGvfwRoWYQ/0.jpg)](https://www.youtube.com/watch?v=_mGvfwRoWYQ)
+
+<br>
+
+## サーバーレスきたる。Amazon EMR Serverless について語る
+
+[![alt設定](http://img.youtube.com/vi/S02Bep2dMLc/0.jpg)](https://www.youtube.com/watch?v=S02Bep2dMLc)
+
+<br>
+
+## Amazon QuickSight でかっこいい BI ダッシュボードを作る方法
+
+<div><video controls src="https://contents-s3-bucket.s3.ap-northeast-1.amazonaws.com/documents/aws/20220728_20th_ISV_DiveDeepSeminar_QuickSight.mp4" muted="false"></video><div>
 
 <br>
 
