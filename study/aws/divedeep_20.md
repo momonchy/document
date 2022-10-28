@@ -15,7 +15,7 @@ Twitter ハッシュタグ: #ちょっぴりDD
 
 ## Redshift Serverless で今から始めるサーバレスデータ分析環境
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/8ydlnbIg-MA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+[![alt設定](http://img.youtube.com/vi/8ydlnbIg-MA/0.jpg)](https://www.youtube.com/watch?v=8ydlnbIg-MA)
 
 <br>
 
