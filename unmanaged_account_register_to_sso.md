@@ -42,7 +42,7 @@ from SSO
 ![1](images/unmanaged_account_register_to_sso_1.drawio.svg)
 ![2](images/unmanaged_account_register_to_sso_2.drawio.svg)
 
-2. SAML metadata ファイルをダウンロードし、アプリケーションを追加<br>
+1. SAML metadata ファイルをダウンロードし、アプリケーションを追加<br>
 ![3](images/unmanaged_account_register_to_sso_3.drawio.svg)
 
 <br>
@@ -53,3 +53,8 @@ from SSO
 
 #### from SSO
 
+<br>
+
+## 参考サイト
+
+- https://qiita.com/wokamoto/items/8f078f14201b772edc15
