@@ -24,7 +24,7 @@ AWS アカウントの統合・解約など、ドメイン管理用の AWS ア�
 
 <br>
 
-### 1. 移管元アカウントに対するドメイン移管の申請
+#### 1. 移管元アカウントに対するドメイン移管の申請
 
 ```sh
 $ aws --profile ${移管元プロファイル名} route53domains transfer-domain-to-another-aws-account --domain-name ${対象ドメイン名} --account-id ${移行先AWSアカウントID} --region us-east-1
@@ -41,7 +41,7 @@ $ aws --profile ${移管元プロファイル名} route53domains transfer-domain
 
 <br>
 
-### 2. 移管先アカウントでドメイン移管を承認
+#### 2. 移管先アカウントでドメイン移管を承認
 
 ```sh
 $ aws --profile ${移管先プロファイル名} route53domains accept-domain-transfer-from-another-aws-account --domain-name ${対象ドメイン名} --password ${上記手順で取得したパスワード} --region us-east-1
@@ -49,14 +49,14 @@ $ aws --profile ${移管先プロファイル名} route53domains accept-domain-t
 
 <br>
 
-### 3. ホステッドゾーンの移行
+#### 3. ホステッドゾーンの移行
 
 新規ドメインの場合は、普通に移管先アカウント上でホステッドゾーンを作って下さい。  
 既に運用中のドメインの場合は、[公式ドキュメント](https://docs.aws.amazon.com/ja_jp/Route53/latest/DeveloperGuide/hosted-zones-migrating.html)に沿って移行作業を行なって下さい。
 
 <br>
 
-### 補足. ドメイン移行申請のキャンセル
+#### 補足. ドメイン移行申請のキャンセル
 
 ```sh
 $ aws --profile ${移管元プロファイル名} route53domains cancel-domain-transfer-to-another-aws-account --domain-name ${対象ドメイン名} --region us-east-1
